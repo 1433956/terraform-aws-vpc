@@ -1,28 +1,27 @@
-variable "project" {
-    type = string
-  
-}
+
 variable "environment" {
   type = string
 }
+variable "project" {
+  type = string
 
-
+}
 variable "cidr_block" {
-    type=string
-    default = "10.0.0.0/16"
+  default = "10.0.0.0/16"
+  type = string
   
 }
-variable "public_cidr_block" {
-  
-  type=list(string)
+variable "public_subnet_cidrs" {
+  type = list(string)
   
 }
-variable "private_cidr_block" {
+variable "private_subnet_cidrs" {
   type = list(string)
 }
-variable "database_cidr_block" {
-  type = list(string)
+variable "database_subnet_cidrs" {
+   type = list(string)
 }
+
 variable "is_peering_required" {
-    default = false
+  default = false
 }
