@@ -23,7 +23,7 @@ resource "aws_internet_gateway" "main" {
   map_public_ip_on_launch = true
   #slice(data.aws_availability_zones.available.names,0,2)
   tags = merge(local.common_tags,{
-    Name = "${var.project}-${var.environment}-${local.zone[count.index]}"
+    Name = "${var.project}-${var.environment}-public-${local.zone[count.index]}"#roboshop-qa-public-us-east-1a-
   })
 }
 resource "aws_subnet" "private" {
@@ -33,7 +33,7 @@ resource "aws_subnet" "private" {
   availability_zone = local.zone[count.index]
   #slice(data.aws_availability_zones.available.names,0,2)
   tags = merge(local.common_tags,{
-    Name = "${var.project}-${var.environment}-${local.zone[count.index]}"
+    Name = "${var.project}-${var.environment}-private-${local.zone[count.index]}"
   })
 }
 resource "aws_subnet" "database" {
@@ -43,7 +43,7 @@ resource "aws_subnet" "database" {
   availability_zone = local.zone[count.index]
   #slice(data.aws_availability_zones.available.names,0,2)
   tags = merge(local.common_tags,{
-    Name = "${var.project}-${var.environment}-${local.zone[count.index]}"
+    Name = "${var.project}-${var.environment}-database-${local.zone[count.index]}"
   })
 }
 resource "aws_eip" "nat" {
